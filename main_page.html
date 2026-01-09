@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <link rel="icon" href="to-do-list.jpg" type="image/jpg">
+</head>
+<body>
+    <div class="container">
+        <div id="content"> 
+            <i>Good Morning</i>
+            <b>Dharineesh</b>
+        </div>
+
+        <div>
+            <h1>Todo List</h1>
+            <p id="hello">Do Some Tasks In Regular Basis</p>
+        </div>
+        
+    <div class="account-box">
+   <i class="fa-solid fa-circle-user"></i>
+     <select name="account" id="account">
+       <option id="account1"></option>
+       <option value="Logout" id="logout">Logout</option>
+   </select>
+</div>
+</div>
+<div class="dashboard">
+            <h1>Dashboard</h1>
+            <div id="values">
+                 <div class="box" id="box1">
+                      <p>Your Tasks</p>
+                      <b id="task">0</b>
+                 </div>
+                 <div class="box" id="box2">
+                     <p>Completed</p>
+                     <b id="completed">0</b>
+                 </div>
+                 <div class="box" id="box3">
+                    <p>Pending</p>
+                    <b id="pending">0</b>
+                 </div>
+        <div class="container-2">
+            <div class="progress">
+                <div class="progress-bar">
+                   
+                </div>
+                   
+            </div>
+          
+            <div id="progress-status">
+                 <p>Completion Progress</p>
+                 <b id="percentage-value">0%</b>
+            </div>
+        </div>
+          
+
+    </div>
+</div>
+    <div class="second-container">
+    <div class="one">
+        <h1>Your Task's</h1>
+        <div class="buttons">
+           <button id="add"><i class="fa-solid fa-plus"></i>Add Task</button>
+           <button id="clear-all"><i class="fa-solid fa-trash" style="color: #f0f2f5;"></i>Clear All</button>
+        </div>
+        
+    </div>
+    <div class="get_input">
+    
+    </div>
+    <div class="two">
+            
+        </div>
+        
+    </div>
+   
+   
+</body>
+</html>
+<style>
+
+    /* Base Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container-2 {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically (optional) */
+    margin-top: 40px;        /* spacing from above */
+    width: 100%;
+    flex-direction: column;
+    
+}
+
+#hello {
+    text-align: center;
+    margin-top:10px;
+    
+}
+.progress {
+    width: 90%; /* keep it smaller than full width */
+    /* prevent it from being too wide on big screens */
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    overflow: hidden;
+  
+}
+
+
+.progress-bar {
+        height: 12px;
+        width: 0;
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+        border-radius: 5px;
+        text-align: center;
+        line-height: 25px;
+        color: black;
+        text-align: center;
+        font-weight: bold;
+        display:flex;
+        justify-content: space-between;
+}
+
+.fa-solid.fa-plus
+{
+    color:white;
+}
+select {
+    border: none;
+}
+
+body {
+    background-color: rgb(212, 218, 229);
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+i {
+    color: blue;
+}
+
+/* Header Container */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: white;
+    box-shadow: 1px 0.1px 2px 0.1px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+#progress-status {
+    margin-top: 10px;
+    width:90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* vertically center the text */
+}
+
+#progress-status p,
+#progress-status b {
+    margin: 0; /* remove default margins */
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px;
+    background-color: white;
+    box-shadow: 1px 0.1px 2px 0.1px rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+/* Dashboard */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: white;
+    box-shadow: 1px 0.1px 2px 0.1px rgba(0,0,0,0.2);
+    border-radius: 10px; /* match mobile style */
+}
+
+.dashboard h1 {
+    color: #1e3a8a; /* blue similar to screenshot */
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#values {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.box {
+    flex: 1 1 32%; /* 3 boxes in a row */
+    min-width: 120px;
+    height: 80px; /* match mobile screenshot height */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Box Colors (backgrounds optional for now) */
+#box1 { background-color: #e0f2fe; 
+} /* light blue */
+#box2 { background-color: #dcfce7; } /* light green */
+#box3 { background-color: #fef9c3; } /* light yellow */
+
+/* Second Container */
+.second-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: white;
+    box-shadow: 1px 0.1px 2px 0.1px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+/* Buttons Row */
+.one {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.one h1 {
+    flex: 1;
+    min-width: 150px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.buttons button {
+    flex: 1 1 auto;
+    min-width: 120px;
+}
+
+/* Task Section */
+.get_input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.two {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+#add { background-color: #1e3a8a; }
+#clear-all { background-color: #ef4444; }
+
+/* Input fields */
+input.task-input {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+    flex: 1;
+}
+
+/* Icons inside tasks */
+.fa-solid.fa-square-pen,
+.fa-solid.fa-trash,
+.fa-solid.fa-circle-check {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .container, .dashboard, .second-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    #values {
+        gap: 10px;
+    }
+
+    .box {
+        height: 70px;
+        font-size: 0.9rem;
+    }
+
+    .one h1 {
+        font-size: 1rem;
+    }
+
+    .buttons button {
+        min-width: 100px;
+    }
+
+    .buttons {
+        gap: 5px;
+    }
+}
+
+/* Mobile: top container same row + dashboard stacked column */
+@media screen and (max-width: 480px) {
+
+    /* Keep header items in same row */
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #content {
+        flex-direction: column;
+    }
+
+    .account-box {
+        margin-top: 0;
+    }
+
+    /* Stack dashboard boxes vertically */
+    #values {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .box {
+        width: 100%;
+        height: 70px; /* match screenshot height */
+    }
+
+    .one {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttons {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .buttons button {
+        width: 48%;
+    }
+}
+/* Prevent top container from wrapping */
+.container {
+    flex-wrap: nowrap; /* force same row */
+    overflow-x: auto; /* allow scrolling if needed on very small screens */
+}
+
+/* Ensure content stays inside container */
+.container > #content {
+    min-width: 0; /* allow flex items to shrink properly */
+}
+
+.account-box {
+    min-width: 0; /* prevent overflow */
+}
+
+/* Dashboard: keep content inside container */
+.dashboard #values {
+    flex-wrap: wrap; /* wrap boxes if needed */
+}
+
+.dashboard .box {
+    min-width: 0; /* prevent overflow */
+    width: 100%; /* for mobile, full width inside container */
+    box-sizing: border-box;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 480px) {
+    .container {
+        flex-direction: row; /* keep items in same row */
+        flex-wrap: nowrap; /* prevent wrapping */
+        gap: 10px;
+    }
+
+    #content {
+        flex: 1 1 auto; /* allow shrinking */
+        min-width: 0; 
+    }
+
+    .account-box {
+        flex: 0 0 auto; /* keep account box from growing too much */
+        min-width: 50px;
+    }
+
+    .dashboard {
+        overflow-x: hidden; /* prevent horizontal scroll */
+    }
+
+    #values {
+        flex-direction: column; /* stack boxes */
+        gap: 10px;
+    }
+
+    .box {
+        width: 100%; /* fit container */
+    }
+    option {
+        border:none;
+    }
+}
+#hello {
+    color:blue;
+}
+
+
+</style>
+
+<script src="https://kit.fontawesome.com/6045d1d2eb.js" crossorigin="anonymous"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getDatabase, ref, push, onValue,set,remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-daqqetabase.js";
+
+let appSetting = {
+    databaseURL: "https://to-do-list-51c07-default-rtdb.firebaseio.com/"
+}
+const app = initializeApp(appSetting)
+const database = getDatabase(app)
+const name_db = ref(database,"users")
+const datas_db = ref(database,"datas")
+const status_db = ref(database,"status")
+   let a = new Date()
+   let i = document.querySelector('#content i'); 
+if (a.getHours() >= 12) {
+   i.innerHTML = "Good Evening";
+} else {
+   i.innerHTML = "Good Morning";
+}
+
+   
+    onValue(name_db, (snapshot) => {
+        let found = false;
+
+        if (snapshot.exists()) {
+            const users = snapshot.val();
+            const username = localStorage.getItem("username");
+          if (username) {
+               document.querySelector("b").textContent = username;
+               document.querySelector("#account1").innerHTML = username;
+            }
+
+     }
+    })
+
+
+let accountSelect = document.querySelector('#account');
+let email = localStorage.getItem("email")
+accountSelect.addEventListener('change', (e) => {
+    const tasks = parseInt(document.querySelector('#task').innerHTML) || 0;
+    const completed = parseInt(document.querySelector('#completed').innerHTML) || 0;
+    const pending = parseInt(document.querySelector('#pending').innerHTML) || 0;
+    if (e.target.value === "Logout") {
+        const status_datas = {
+            user_email : email,
+            user_tasks:tasks,
+            user_completed:completed,
+            user_pending:pending
+        }
+        push(status_db,status_datas);
+        alert("Logout successfully!!!");
+        window.location.href = "signin.html";
+    }
+});
+ onValue(status_db, (snapshot) => {
+    getInputContainer.innerHTML = ""; 
+   if (snapshot.exists()) {
+        let datas = snapshot.val()
+        let tasks = document.querySelector('#task')
+        let completed= document.querySelector('#completed')
+        let pending = document.querySelector('#pending')
+        for(let key in datas)
+        {
+            if(datas[key].user_email===email)
+            {
+                 tasks.innerHTML = datas[key].user_tasks;
+                 completed.innerHTML = datas[key].user_completed;
+                 pending.innerHTML = datas[key].user_pending;
+            }
+        }
+   }
+}
+ )
+let add_btn = document.querySelector('button')
+let getInputContainer = document.querySelector('.get_input');
+const emails = email;
+add_btn.addEventListener('click',(e)=>
+{
+    e.preventDefault()
+
+    const taskWrapper = document.createElement('div');
+    taskWrapper.style.display = "flex";
+    taskWrapper.style.alignItems = "center";
+    taskWrapper.style.gap = "10px";
+    taskWrapper.style.marginTop = "10px";
+
+
+   const input_field = document.createElement('input')
+   input_field.type="text"
+   input_field.placeholder = "Enter The Task..."
+   input_field.classList.add("task-input")
+   
+    const confirmIcon = document.createElement('i');
+    confirmIcon.className = "fa-solid fa-circle-check";
+    confirmIcon.style.color = "#39df0c";
+    confirmIcon.style.marginLeft = "10px";
+    confirmIcon.style.cursor = "pointer";
+    //<i class="fa-solid fa-circle-check" style="color: #39df0c;"></i>
+    const trashIcon = document.createElement('i');
+    trashIcon.className = "fa-solid fa-trash";
+    trashIcon.style.color = "red";
+    trashIcon.style.marginLeft = "10px";
+    trashIcon.style.cursor = "pointer";
+
+    const editIcon = document.createElement('i')
+    editIcon.className = "fa-solid fa-square-pen"
+    editIcon.style.color = "green";
+    editIcon.marginLeft = "10px";
+    editIcon.style.cursor = "pointer";
+
+
+    taskWrapper.appendChild(input_field);
+    taskWrapper.appendChild(confirmIcon);
+    taskWrapper.appendChild(trashIcon);
+    taskWrapper.appendChild(editIcon);
+
+    getInputContainer.appendChild(taskWrapper);
+
+  
+    confirmIcon.addEventListener('click', () => {
+    const taskValue = input_field.value; // get value from the current input
+ 
+    const details = {
+        useremail : emails,
+        usertask: taskValue,
+        completed: false
+    }
+     push(datas_db,details)
+}
+)
+});
+
+onValue(datas_db, (snapshot) => {
+    let pending = 0;
+    let task_count = 0;
+
+    getInputContainer.innerHTML = ""; 
+    let found = false;
+
+    if (snapshot.exists()) {
+        const users = snapshot.val();
+        for (let key in users) {
+            if (users[key].useremail === email) {   
+                found = true;
+                if (!users[key].completed) pending += 1;
+                task_count += 1;
+                createTaskElement(users[key].usertask, key, users[key].completed);
+            }
+        }
+
+        if (!found) getInputContainer.innerHTML = "No Records Found.";
+
+        document.querySelector('#task').innerHTML = task_count;
+        document.querySelector('#pending').innerHTML = pending;
+        document.querySelector('#completed').innerHTML = task_count - pending;
+        const progressBar = document.querySelector(".progress-bar");
+        let percentage_value = document.querySelector('#percentage-value');
+        
+        let current = 0;
+        let speed = 20;
+        let v = task_count === 0 ? 0 : Math.round(((task_count - pending) / task_count) * 100);
+        let fill = setInterval(()=>
+        {
+            if(current>=v)
+            {
+                clearInterval(fill)
+            }
+            else
+            {
+                current++;
+                progressBar.style.width = current + "%"
+                percentage_value.textContent = current + "%"
+                
+            }
+        },speed)
+    }
+});
+
+
+   
+let clear_all_button = document.querySelector('#clear-all');
+
+clear_all_button.addEventListener('click', () => {
+    // Remove all tasks for the current user from database
+    onValue(datas_db, (snapshot) => {
+        if (snapshot.exists()) {
+            const users = snapshot.val();
+            for (let key in users) {
+                if (users[key].useremail === email) {
+                    remove(ref(database, "datas/" + key));
+                }
+            }
+        }
+    }, { onlyOnce: true }); // only trigger once
+
+    // Clear input container and reset counters
+    getInputContainer.innerHTML = "";
+    document.querySelector('#task').innerHTML = 0;
+    document.querySelector('#pending').innerHTML = 0;
+    document.querySelector('#completed').innerHTML = 0;
+    const progressBar = document.querySelector(".progress-bar");
+    let value =  parseInt(progressBar.textContent) || 0;
+    let current=0
+    let speed = 20;
+    let fill = setInterval(()=>
+        {
+            if(value<=0)
+            {
+                clearInterval(fill)
+            }
+            else
+            {
+                value--;
+                progressBar.style.width = value + "%"
+                progressBar.textContent = value + "%"
+                
+            }
+        },speed)
+});
+
+function createTaskElement(taskValue, key, completed) {
+    const taskWrapper = document.createElement('div');
+    taskWrapper.style.display = "flex";
+    taskWrapper.style.alignItems = "center";
+    taskWrapper.style.gap = "10px";
+    taskWrapper.style.marginTop = "10px";
+
+    const input_field = document.createElement('input');
+    input_field.type = "text";
+    input_field.value = taskValue;
+    input_field.classList.add("task-input");
+    input_field.disabled = true;
+
+    // Apply line-through if completed
+    if (completed) {
+        input_field.style.textDecoration = "line-through";
+    }
+
+    const confirmIcon = document.createElement('i');
+    confirmIcon.className = "fa-solid fa-circle-check";
+    confirmIcon.style.color = completed ? "#39df0c" : "#39df0c";
+    confirmIcon.style.cursor = "pointer";
+
+    const trashIcon = document.createElement('i');
+    trashIcon.className = "fa-solid fa-trash";
+    trashIcon.style.color = "red";
+    trashIcon.style.cursor = "pointer";
+
+    const editIcon = document.createElement('i');
+    editIcon.className = "fa-solid fa-square-pen";
+    editIcon.style.color = "green";
+    editIcon.style.cursor = "pointer";
+
+    // Trash event
+    trashIcon.addEventListener('click', () => {
+        remove(ref(database, "datas/" + key));
+        taskWrapper.remove();
+    });
+
+    // Edit event
+    editIcon.addEventListener('click', () => {
+        input_field.disabled = false;   
+        input_field.focus();            
+        editIcon.style.color = "orange"; 
+    });
+
+    // Confirm (toggle completed) event
+    confirmIcon.addEventListener('dblclick', () => {
+        let pendingElem = document.querySelector('#pending');
+        let completedElem = document.querySelector('#completed');
+        let isCompleted = input_field.style.textDecoration === "line-through";
+
+        input_field.style.textDecoration = isCompleted ? "none" : "line-through";
+
+        // Update counts
+        pendingElem.innerHTML = parseInt(pendingElem.innerHTML) + (isCompleted ? 1 : -1);
+        completedElem.innerHTML = parseInt(completedElem.innerHTML) + (isCompleted ? -1 : 1);
+
+        // Update database
+        set(ref(database, "datas/" + key), {
+            useremail: emails,
+            usertask: input_field.value,
+            completed: !isCompleted
+        });
+    });
+
+    taskWrapper.appendChild(input_field);
+    taskWrapper.appendChild(confirmIcon);
+    taskWrapper.appendChild(trashIcon);
+    taskWrapper.appendChild(editIcon);
+
+    getInputContainer.appendChild(taskWrapper);
+}
+
+    onValue(status_db, (snapshot) => {
+        let found = false;
+
+        if (snapshot.exists()) {
+            const users = snapshot.val();
+            const username = localStorage.getItem("username");
+          if (username) {
+               document.querySelector("b").textContent = username;
+               document.querySelector("#account1").innerHTML = username;
+            }
+
+     }
+    })
+    let flag = true;
+    hello()
+    let result = document.querySelector('#hello')
+    function hello()
+    {
+
+        setInterval(()=>
+        {
+            if(flag)
+            {
+              result.innerHTML = "Do Some Tasks In Regular Basis"
+              result.style.color = "blue"
+            }
+            else{
+                result.innerHTML = "Try To Complete The Tasks.."
+                result.style.color = "blue"
+            }
+            flag = !flag
+
+        },10000)
+    }
+
+</script>
+
+

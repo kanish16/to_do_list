@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To-Do-List_App</title>
+     
+</head>
+<body>
+   
+    <div class="container">
+        <div class="first-field">
+               <h1>Hello!</h1>
+               <p>Create Your account to organize your tasks effciently.</p>
+               
+                <input type="text" placeholder="Username" id="name">
+               <input type="email" placeholder="E-mail" id="email">
+               <input type="password" placeholder="Password" id="password">
+               <button>CREATE ACCOUNT</button>
+               <p id="one">Already have an account? <a href="signin.html"><b>Sign in</b></a></p>
+        </div>
+        <div class="second-field">
+            <h1>Start Your Productivity Journey!</h1>
+            <p>Sign up and start organized your taks effecively.Stay focused your day,and achieve more.</p>
+            <a href="mailto:dharineeshv18@gmail.com?subject=Support%20Request&body=Hello,%20I%20need%20help%20with...">
+    Contact support
+</a>
+
+            
+        </div>
+        
+    
+        
+    
+</body>
+</html>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+<style>
+    body {
+          font-family: "Roboto", sans-serif;
+    }
+</style>
+<script src="https://kit.fontawesome.com/6045d1d2eb.js" crossorigin="anonymous"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getDatabase, ref, push, onValue,set } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+
+let appSetting = {
+    databaseURL: "https://to-do-list-51c07-default-rtdb.firebaseio.com/"
+}
+const app = initializeApp(appSetting)
+const database = getDatabase(app)
+const name_db = ref(database,"users")
+
+
+
+const createBtn = document.querySelector("button");
+let name = document.querySelector("#name")
+let email = document.querySelector("#email")
+let password = document.querySelector("#password")
+
+createBtn.addEventListener("click", (e) => {
+    e.preventDefault(); 
+
+    const details = {
+        username: name.value,
+        useremail: email.value,
+        userpassword: password.value
+    };
+
+    onValue(name_db, (snapshot) => {
+        let emailExists = false;
+
+        if (snapshot.exists()) {
+            const users = snapshot.val();
+            for (let key in users) {
+                if (users[key].useremail === details.useremail) {
+                    emailExists = true;
+                    break;
+                }
+            }
+        }
+
+        if (emailExists) {
+            alert("Email is already registered!!!");
+        } else {
+            push(name_db, details); 
+            alert("Account created successfully!");
+            window.location.href = "signin.html";
+
+        }
+    }, { onlyOnce: true }); // ✅ pass onlyOnce correctly
+});
+
+ 
+
+</script>
+<style>
+    #msg {
+    border:1px solid black;
+    width:300px;
+    height:50px;
+    display:none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    bottom:300px;
+    left:200px;
+    color:black;
+}
+.container {
+    position:absolute;
+}
+#msg {
+    background-color: white;
+     color:black;
+     border-radius:0px;
+     box-shadow: 1px 0.1px blue;
+     text-align: center;
+     border:none;
+     gap:20px;
+     letter-spacing: 1px;
+     
+}
+
+</style>
